@@ -51,3 +51,10 @@ const insertNodeAt = (index, newNodeAddress, head, collection) => {
     let newNode = collection[newNodeAddress];
     newNode.next = subsequentNode;
 }
+
+const deleteNodeAt = (index, head, collection) => {
+    let nodeToBeDeleted = nodeAt(index, head, collection);
+    let previousNode = nodeAt(index-1, head, collection);
+
+    previousNode.next = nodeToBeDeleted.next;
+}
