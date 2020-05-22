@@ -5,9 +5,9 @@ const getName = (node) => {
     return node["name"];
 }
 
-const headNode = (linkedList, collection) => {
+const headNode = (head, collection) => {
 
-    return collection[linkedList];
+    return collection[head];
 }
 
 const next = (node, collection) => {
@@ -33,6 +33,21 @@ const addressAt = (index, head, collection) => {
     return index == 0 ? head : nodeAt(index-1, head, collection)["next"];
 }
 
-const indexAt = () => {
-    
+// note: collection and head reference arguments are switched due to the tests
+const indexAt = (node, collection, head) => {
+    let currentNode = headNode(head, collection);
+    let currentIndex = 0;
+    while (currentNode != node){
+        currentIndex++;
+        currentNode = next(currentNode, collection);
+    }
+    return currentIndex;
+}
+
+const insertNodeAt = (index, newNodeAddress, head, collection) => {
+    let previousNode = nodeAt(index-1, head, collection);
+    let subsequentNode = previousNode.next;
+    previousNode.next = newNodeAddress;
+    let newNode = collection[newNodeAddress];
+    newNode.next = subsequentNode;
 }
